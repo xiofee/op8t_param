@@ -50,8 +50,8 @@ class OPParam:
             header = block[0:0x400]
             content = block[0x400:]
             block = header+self.encrypt(content)
-        hash = hashlib.md5(block[0x400:])
-        block[0x80:0x90] = hash.digest()
+            hash = hashlib.md5(block[0x400:])
+            block[0x80:0x90] = hash.digest()
         if primary:
             block_start = sid << 10
         else:
