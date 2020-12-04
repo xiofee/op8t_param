@@ -21,7 +21,7 @@ class OPParam:
         return bytearray(cipher.decrypt(data))
 
     def read_block(self, sid, primary):
-        if not primary:
+        if primary:
             block_start = sid << 10
         else:
             block_start = (sid+0x200) << 10
@@ -52,7 +52,7 @@ class OPParam:
             block = header+self.encrypt(content)
         hash = hashlib.md5(block[0x400:])
         block[0x80:0x90] = hash.digest()
-        if not primary:
+        if primary:
             block_start = sid << 10
         else:
             block_start = (sid+0x200) << 10
